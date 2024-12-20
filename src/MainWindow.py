@@ -12,9 +12,11 @@ class MainWindow(QWidget):
             layout = QVBoxLayout(self)
 
             search_layout = QHBoxLayout()
-            search_label = QLabel("Введите для поиска:")
+            search_label = QLabel("")
+
             self.search_input = QLineEdit()
             self.search_input.setFixedWidth(200)
+            self.search_input.setPlaceholderText("Введите для поиска:")
             search_layout.addWidget(search_label)
             search_layout.addWidget(self.search_input)
 
