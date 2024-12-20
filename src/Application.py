@@ -7,18 +7,14 @@ class Application(QApplication):
     def __init__(self, argv):
         super().__init__(argv)
 
-        self.__db = QSqlDatabase.addDatabase('QPSQL')
-        self.__db.setHostName(st.db_params['host'])
-        self.__db.setPort(st.db_params['port'])
-        self.__db.setDatabaseName(st.db_params['dbname'])
-        self.__db.setUserName(st.db_params['user'])
-        self.__db.setPassword(st.db_params['password'])
-        ok = self.__db.open()
+        db = QSqlDatabase.addDatabase('QPSQL')
+        db.setHostName(st.db_params['host'])
+        db.setPort(st.db_params['port'])
+        db.setDatabaseName(st.db_params['dbname'])
+        db.setUserName(st.db_params['user'])
+        db.setPassword(st.db_params['password'])
+        ok = db.open()
         if ok:
             print('Connected to database', file=sys.stderr)
         else:
-            print('Connection FAILED', self.__db.lastError().text(), file=sys.stderr)
-
-    @property
-    def db_conn(self):
-        return self.__db
+            print('Connection FAILED', self.db.lastError().text(), file=sys.stderr)
